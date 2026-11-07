@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Essence Fragrance | Artisan Perfume & Haute Parfumerie</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            100: '#FDFBF7',
+                            200: '#F7F0E1',
+                            300: '#E6D3B3',
+                            400: '#D4B886',
+                            500: '#C5A059', // Primary Accent Gold
+                            600: '#A37F3F',
+                            700: '#7E602A'
+                        },
+                        charcoal: {
+                            800: '#1E1E1E',
+                            900: '#121212',
+                            950: '#0A0A0A'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gold-gradient {
+            background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bg-gold-gradient {
+            background: linear-gradient(135deg, #C5A059 0%, #E6D3B3 50%, #A37F3F 100%);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-gold-100 text-charcoal-900 font-sans antialiased selection:bg-gold-500 selection:text-white">
+
+    <!-- Top Security & Trust Bar (Checklist #1 & #8) -->
+    <div class="bg-charcoal-950 text-gold-200 text-xs py-2 px-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-lock text-emerald-400"></i>
+                <span class="font-medium tracking-wide">Koneksi Aman Enkripsi 256-bit SSL (HTTPS)</span>
+            </div>
+            <div class="hidden sm:flex items-center space-x-4 text-xs">
+                <span><i class="fas fa-shield-alt text-gold-500 mr-1"></i> Terdaftar Legalitas NIB: 1284920481029</span>
+                <span><i class="fas fa-truck text-gold-500 mr-1"></i> Pengiriman Seluruh Indonesia</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header / Navigation (Checklist #1, #2) -->
+    <header class="sticky top-0 z-40 bg-gold-100/90 backdrop-blur-md border-b border-gold-300/40 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Mobile Menu Toggle -->
+                <button id="mobile-menu-btn" class="md:hidden text-charcoal-900 p-2 focus:outline-none" aria-label="Buka Menu">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+
+                <!-- Brand Logo (Checklist #1) -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 rounded-full border border-gold-500 flex items-center justify-center bg-charcoal-950 text-gold-400 group-hover:scale-105 transition-transform">
+                        <span class="font-serif font-bold text-xl tracking-tighter">L'E</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-serif text-xl sm:text-2xl font-bold tracking-widest text-charcoal-900 leading-none">L'ESSENCE</span>
+                        <span class="text-[9px] uppercase tracking-[0.3em] text-gold-600 font-semibold mt-1">Haute Parfumerie</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-wider uppercase text-charcoal-800">
+                    <a href="#beranda" class="hover:text-gold-600 transition-colors">Beranda</a>
+                    <a href="#katalog" class="hover:text-gold-600 transition-colors">Katalog Koleksi</a>
+                    <a href="#tentang-kami" class="hover:text-gold-600 transition-colors">Tentang Kami</a>
+                    <a href="#ulasan" class="hover:text-gold-600 transition-colors">Ulasan</a>
+                    <a href="#kontak" class="hover:text-gold-600 transition-colors">Kontak Kami</a>
+                </nav>
+
+                <!-- Action Icons -->
+                <div class="flex items-center space-x-4">
+                    <button onclick="openModal('modal-pembayaran')" class="hidden sm:flex items-center text-xs font-semibold px-3 py-1.5 border border-gold-500 text-gold-700 rounded-full hover:bg-gold-500 hover:text-white transition-all">
+                        <i class="fas fa-qrcode mr-1.5"></i> QRIS & Bayar
+                    </button>
+                    <button id="cart-btn" onclick="toggleCart()" class="relative p-2 text-charcoal-900 hover:text-gold-600 transition-colors" aria-label="Keranjang Belanja">
+                        <i class="fas fa-shopping-bag text-xl"></i>
+                        <span id="cart-count" class="absolute -top-1 -right-1 bg-gold-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-md">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gold-100 border-b border-gold-300 px-4 pt-2 pb-6 space-y-3">
+            <a href="#beranda" class="block py-2 text-charcoal-800 font-medium border-b border-gold-200">Beranda</a>
+            <a href="#katalog" class="block py-2 text-charcoal-800 font-medium border-b border-gold-200">Katalog Parfum</a>
+            <a href="#tentang-kami" class="block py-2 text-charcoal-800 font-medium border-b border-gold-200">Tentang Kami & Legalitas</a>
+            <a href="#ulasan" class="block py-2 text-charcoal-800 font-medium border-b border-gold-200">Kata Mereka (Testimoni)</a>
+            <a href="#kontak" class="block py-2 text-charcoal-800 font-medium border-b border-gold-200">Hubungi Kami</a>
+            <div class="pt-2 flex flex-col gap-2">
+                <button onclick="openModal('modal-pembayaran')" class="w-full text-center py-2 text-xs font-bold border border-gold-600 text-gold-700 rounded-lg">
+                    <i class="fas fa-qrcode mr-1"></i> Cara Pembayaran & QRIS
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="relative bg-charcoal-950 text-white overflow-hidden py-16 sm:py-24 lg:py-32">
+        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#C5A059_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 bg-charcoal-800/80 border border-gold-500/40 px-3 py-1.5 rounded-full text-xs text-gold-300">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span class="tracking-widest uppercase">Edisi Terbatas 2026 • Ready Stock</span>
+                    </div>
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-wide">
+                        A Scent <br class="hidden sm:block"/>
+                        <span class="gold-gradient">Beyond Ordinary
+                    </h1>
+                    <p class="text-gray-300 text-sm sm:text-base max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        Lebih dari sekadar wewangian, parfum adalah identitas yang meninggalkan kesan. Diracik dengan perpaduan aroma berkualitas untuk menghadirkan karakter elegan, pesona yang memikat, dan keharuman yang tak terlupakan.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#katalog" class="w-full sm:w-auto px-8 py-4 bg-gold-500 hover:bg-gold-600 text-charcoal-950 font-bold rounded-lg shadow-lg hover:shadow-gold-500/30 transition-all text-center tracking-wider text-sm uppercase">
+                            Jelajahi Koleksi
+                        </a>
+                        <a href="https://wa.me/6281913367888?text=Halo%20L'Essence%20Parfum,%20saya%20ingin%20konsultasi%20aroma%20parfum" target="_blank" class="w-full sm:w-auto px-8 py-4 border border-gold-400 text-gold-300 hover:bg-gold-500/10 rounded-lg transition-all text-center font-medium text-sm flex items-center justify-center gap-2">
+                            <i class="fab fa-whatsapp text-lg text-emerald-400"></i> Konsultasi Aroma
+                        </a>
+                    </div>
+                    <!-- Micro Trust Badge -->
+                    <div class="pt-6 border-t border-gray-800 flex items-center justify-center lg:justify-start gap-6 text-xs text-gray-400">
+                        <div class="flex items-center gap-1.5">
+                            <i class="fas fa-certificate text-gold-400"></i> 100% Original Essence
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <i class="fas fa-box-open text-gold-400"></i> Garansi Pecah Diganti
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <i class="fas fa-shipping-fast text-gold-400"></i> Pengiriman Cepat
+                        </div>
+                    </div>
+                </div>
+                <!-- Hero Image Showcase -->
+                <div class="relative flex justify-center">
+                    <div class="relative w-72 h-96 sm:w-80 sm:h-[450px] rounded-2xl overflow-hidden shadow-2xl border-2 border-gold-500/30">
+                        <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80&w=800" alt="L'Essence Luxury Bottle" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/80 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4 bg-charcoal-900/90 backdrop-blur-sm p-4 rounded-xl border border-gold-500/40 text-center">
+                            <p class="font-serif text-gold-300 text-lg font-semibold">Velvet Rose & Oud</p>
+                            <p class="text-xs text-gray-300">Signature Extrait De Parfum 50ml</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Catalog Section (Checklist #5: Foto & Info Produk) -->
+    <section id="katalog" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-xs uppercase tracking-[0.3em] font-bold text-gold-600">Koleksi Eksklusif</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-charcoal-900 mt-2">Varian Parfum Pilihan</h2>
+            <div class="w-16 h-0.5 bg-gold-500 mx-auto mt-4"></div>
+            <p class="text-gray-600 mt-3 text-sm sm:text-base">Setiap botol diracik khusus untuk memberikan karakter aroma yang khas, mewah, dan berkelas.</p>
+        </div>
+
+        <!-- Product Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Varian 1: Single Edition -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gold-200 flex flex-col justify-between group">
+                <div class="relative overflow-hidden bg-gray-100 aspect-square">
+                    <span class="absolute top-3 left-3 z-10 bg-charcoal-950 text-gold-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Single Bottle</span>
+                    <span class="absolute top-3 right-3 z-10 bg-emerald-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">Stok: 24 Botol</span>
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=600" alt="Midnight Vanilla EDP" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-serif text-xl font-bold text-charcoal-900">Midnight Vanilla EDP</h3>
+                            <span class="text-xs bg-gold-100 text-gold-700 font-semibold px-2 py-0.5 rounded">50 ml</span>
+                        </div>
+                        <p class="text-xs text-gold-600 font-medium mb-3"><i class="fas fa-sparkles text-xs"></i> Warm, Sweet & Sensual Amber</p>
+                        
+                        <!-- Fragrance Notes Breakdown -->
+                        <div class="bg-gold-100/50 p-3 rounded-lg text-xs space-y-1.5 border border-gold-200/60 mb-4">
+                            <p><strong class="text-charcoal-900">Top Notes:</strong> Madagascar Vanilla, Bergamot</p>
+                            <p><strong class="text-charcoal-900">Heart Notes:</strong> Salted Caramel, Tonka Bean</p>
+                            <p><strong class="text-charcoal-900">Base Notes:</strong> Amberwood, White Musk</p>
+                        </div>
+
+                        <!-- Product Spec Details -->
+                        <div class="text-xs text-gray-500 space-y-1">
+                            <p><i class="fas fa-box text-gold-500 w-4"></i> <strong>Isi Paket:</strong> Botol 50ml + Box Luxe + Sample 2ml</p>
+                            <p><i class="fas fa-flask text-gold-500 w-4"></i> <strong>Konsentrasi:</strong> Eau de Parfum (18%)</p>
+                            <p><i class="fas fa-clock text-gold-500 w-4"></i> <strong>Ketahanan:</strong> 8 - 12 Jam</p>
+                            <p><i class="fas fa-truck-loading text-gold-500 w-4"></i> <strong>Estimasi Proses:</strong> Ready (Kirim 1 hari)</p>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400 line-through">Rp 128.000</span>
+                            <p class="text-xl font-bold text-charcoal-900">Rp 96.000</p>
+                        </div>
+                        <button onclick="addToCart('Midnight Vanilla EDP 50ml', 96000, 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=200')" class="px-4 py-2.5 bg-charcoal-950 hover:bg-gold-500 hover:text-charcoal-950 text-gold-300 font-semibold rounded-lg text-xs transition-all flex items-center gap-1.5 shadow">
+                            <i class="fas fa-cart-plus"></i> + Keranjang
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Varian 2: Couple Edition (Best Seller) -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-gold-500 flex flex-col justify-between group relative">
+                <div class="absolute top-0 right-0 bg-gold-500 text-charcoal-950 font-bold text-[10px] px-4 py-1 rounded-bl-lg uppercase tracking-wider z-20 shadow">
+                    ★ Best Seller
+                </div>
+                <div class="relative overflow-hidden bg-gray-100 aspect-square">
+                    <span class="absolute top-3 left-3 z-10 bg-charcoal-950 text-gold-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Couple Set (2x Botol)</span>
+                    <span class="absolute top-10 left-3 z-10 bg-emerald-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">Stok: 12 Set</span>
+                    <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&q=80&w=600" alt="Duo Royale Couple Set" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-serif text-xl font-bold text-charcoal-900">Duo Royale Couple Set</h3>
+                            <span class="text-xs bg-gold-100 text-gold-700 font-semibold px-2 py-0.5 rounded">2x 50 ml</span>
+                        </div>
+                        <p class="text-xs text-gold-600 font-medium mb-3"><i class="fas fa-sparkles text-xs"></i> His (Fresh Woody) & Her (Floral Vanilla)</p>
+                        
+                        <!-- Fragrance Notes Breakdown -->
+                        <div class="bg-gold-100/50 p-3 rounded-lg text-xs space-y-1.5 border border-gold-200/60 mb-4">
+                            <p><strong class="text-charcoal-900">Him (Oceanic Citrus):</strong> Sea Salt, Sage, Cedarwood</p>
+                            <p><strong class="text-charcoal-900">Her (Rose Velvet):</strong> Damask Rose, Jasmine, Amber</p>
+                        </div>
+
+                        <!-- Product Spec Details -->
+                        <div class="text-xs text-gray-500 space-y-1">
+                            <p><i class="fas fa-box text-gold-500 w-4"></i> <strong>Isi Paket:</strong> 2x Botol 50ml + Custom Gift Box + Card</p>
+                            <p><i class="fas fa-flask text-gold-500 w-4"></i> <strong>Konsentrasi:</strong> Eau de Parfum Grade A</p>
+                            <p><i class="fas fa-clock text-gold-500 w-4"></i> <strong>Ketahanan:</strong> 12+ Jam Tahan Lama</p>
+                            <p><i class="fas fa-truck-loading text-gold-500 w-4"></i> <strong>Estimasi Proses:</strong> Ready (Kirim 1 hari)</p>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400 line-through">Rp 135.000</span>
+                            <p class="text-xl font-bold text-gold-600">Rp 94.000</p>
+                        </div>
+                        <button onclick="addToCart('Duo Royale Couple Set (2x50ml)', 94000, 'https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&q=80&w=200')" class="px-4 py-2.5 bg-gold-500 hover:bg-gold-600 text-charcoal-950 font-bold rounded-lg text-xs transition-all flex items-center gap-1.5 shadow">
+                            <i class="fas fa-cart-plus"></i> + Keranjang
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Varian 3: Luxury Charm Edition -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gold-200 flex flex-col justify-between group">
+                <div class="relative overflow-hidden bg-gray-100 aspect-square">
+                    <span class="absolute top-3 left-3 z-10 bg-charcoal-950 text-gold-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Extrait + Leather Charm</span>
+                    <span class="absolute top-3 right-3 z-10 bg-emerald-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">Stok: 8 Botol</span>
+                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=600" alt="Velvet Rose & Oud Extrait" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-serif text-xl font-bold text-charcoal-900">Velvet Rose & Oud</h3>
+                            <span class="text-xs bg-gold-100 text-gold-700 font-semibold px-2 py-0.5 rounded">30 ml</span>
+                        </div>
+                        <p class="text-xs text-gold-600 font-medium mb-3"><i class="fas fa-sparkles text-xs"></i> Intense, Smoky & Exotic Elegance</p>
+                        
+                        <!-- Fragrance Notes Breakdown -->
+                        <div class="bg-gold-100/50 p-3 rounded-lg text-xs space-y-1.5 border border-gold-200/60 mb-4">
+                            <p><strong class="text-charcoal-900">Top Notes:</strong> Taif Rose, Saffron</p>
+                            <p><strong class="text-charcoal-900">Heart Notes:</strong> Agarwood (Oud), Praline</p>
+                            <p><strong class="text-charcoal-900">Base Notes:</strong> Patchouli, Sandalwood</p>
+                        </div>
+
+                        <!-- Product Spec Details -->
+                        <div class="text-xs text-gray-500 space-y-1">
+                            <p><i class="fas fa-box text-gold-500 w-4"></i> <strong>Isi Paket:</strong> Botol 30ml + Charm Kulit 316L + Wooden Box</p>
+                            <p><i class="fas fa-flask text-gold-500 w-4"></i> <strong>Konsentrasi:</strong> Extrait de Parfum (30%)</p>
+                            <p><i class="fas fa-clock text-gold-500 w-4"></i> <strong>Ketahanan:</strong> 18 - 24 Jam Full Day</p>
+                            <p><i class="fas fa-truck-loading text-gold-500 w-4"></i> <strong>Estimasi Proses:</strong> 1-2 Hari Kerja</p>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400 line-through">Rp 132.000</span>
+                            <p class="text-xl font-bold text-charcoal-900">Rp 95.000</p>
+                        </div>
+                        <button onclick="addToCart('Velvet Rose & Oud Extrait 30ml', 95000, 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=200')" class="px-4 py-2.5 bg-charcoal-950 hover:bg-gold-500 hover:text-charcoal-950 text-gold-300 font-semibold rounded-lg text-xs transition-all flex items-center gap-1.5 shadow">
+                            <i class="fas fa-cart-plus"></i> + Keranjang
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Trust Feature Strip -->
+    <section class="bg-charcoal-900 text-gold-200 py-10 border-y border-gold-500/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div class="p-4">
+                <i class="fas fa-shield-check text-2xl text-gold-400 mb-2"></i>
+                <h4 class="font-semibold text-sm">NIB Resmi Terdaftar</h4>
+                <p class="text-xs text-gray-400 mt-1">NIB: 1284920481029</p>
+            </div>
+            <div class="p-4">
+                <i class="fas fa-leaf text-2xl text-gold-400 mb-2"></i>
+                <h4 class="font-semibold text-sm">Bahan Berkualitas</h4>
+                <p class="text-xs text-gray-400 mt-1">Cruelty-Free & Safe Spray</p>
+            </div>
+            <div class="p-4">
+                <i class="fas fa-truck-fast text-2xl text-gold-400 mb-2"></i>
+                <h4 class="font-semibold text-sm">Garansi Anti Pecah</h4>
+                <p class="text-xs text-gray-400 mt-1">Ganti Baru Tanpa Biaya</p>
+            </div>
+            <div class="p-4">
+                <i class="fas fa-qrcode text-2xl text-gold-400 mb-2"></i>
+                <h4 class="font-semibold text-sm">Pembayaran QRIS Aman</h4>
+                <p class="text-xs text-gray-400 mt-1">Semua e-Wallet & Bank</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section (Checklist #1, #8: Identitas & Legalitas) -->
+    <section id="tentang-kami" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="relative">
+                <div class="w-full h-[400px] rounded-2xl overflow-hidden shadow-xl border border-gold-300">
+                    <img src="https://images.unsplash.com/photo-1615397349754-cfa2066a298e?auto=format&fit=crop&q=80&w=800" alt="Perfume Laboratory" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute -bottom-6 -right-6 bg-charcoal-950 text-gold-200 p-6 rounded-2xl shadow-xl hidden sm:block border border-gold-500/30 max-w-xs">
+                    <p class="font-serif text-2xl font-bold text-gold-400">100%</p>
+                    <p class="text-xs text-gray-300 mt-1">Kepuasan Aroma Terjamin dengan Garansi Retur 7 Hari</p>
+                </div>
+            </div>
+            <div class="space-y-6">
+                <div>
+                    <span class="text-xs uppercase tracking-[0.3em] font-bold text-gold-600">Cerita Brand Kami</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-charcoal-900 mt-2">Seni Meracik Keharuman Mewah & Autentik</h2>
+                </div>
+                <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+                    <strong>L'Essence Fragrance</strong> lahir dari kecintaan mendalam terhadap seni pembuatan parfum artisanal. Berbasis di kota <strong>Salatiga, Jawa Tengah</strong>, kami menghadirkan parfum dengan bibit berkualitas yang diracik oleh perfumer berpengalaman.
+                </p>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    Setiap racikan melalui proses aging secara intensif untuk menghasilkan aroma yang halus, tahan lama, dan tidak menyengat di hidung. Komitmen kami adalah transparansi dan keamanan konsumen.
+                </p>
+                
+                <!-- Legal Certificate Box -->
+                <div class="bg-gold-50 border border-gold-300 rounded-xl p-4 flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-full bg-gold-500 text-charcoal-950 flex items-center justify-center shrink-0">
+                        <i class="fas fa-file-contract text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm text-charcoal-900">Legalitas Usaha Resmi (NIB)</h4>
+                        <p class="text-xs text-gray-600 mt-0.5">Nomor Induk Berusaha: <span class="font-mono font-bold text-gold-700">1284920481029</span></p>
+                        <p class="text-[11px] text-emerald-700 font-medium mt-1"><i class="fas fa-check-circle"></i> Terverifikasi Kementerian Investasi/BKPM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials / Customer Reviews (Checklist #6: Ulasan Pembeli) -->
+    <section id="ulasan" class="py-16 sm:py-24 bg-gold-200/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs uppercase tracking-[0.3em] font-bold text-gold-600">Kata Mereka</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-charcoal-900 mt-2">Testimoni Pembeli Setia</h2>
+                <div class="w-16 h-0.5 bg-gold-500 mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gold-200 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex text-amber-400 text-sm space-x-1">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 text-sm italic">"Midnight Vanilla-nya parah sih enaknya! Wanginya mewah banget, ga bikin pusing. Kemarin dipake kondangan dari siang sampe malam masih nempel di baju. Packaging aman banget free bubble wrap tebel."</p>
+                    </div>
+                    <div class="flex items-center space-x-3 pt-6 border-t border-gray-100 mt-4">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150" alt="Reviewer" class="w-10 h-10 rounded-full object-cover border border-gold-400">
+                        <div>
+                            <h4 class="font-bold text-xs text-charcoal-900">Amanda Putri</h4>
+                            <p class="text-[11px] text-gray-500">Verified Buyer • Jakarta Selatan</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gold-200 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex text-amber-400 text-sm space-x-1">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 text-sm italic">"Beli yang Couple Set buat hadiah anniversary sama suami. Respon admin WA super ramah dan cepat. Pengiriman dari Salatiga ke Semarang cuma sehari sampai. Botolnya estetik banget!"</p>
+                    </div>
+                    <div class="flex items-center space-x-3 pt-6 border-t border-gray-100 mt-4">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150" alt="Reviewer" class="w-10 h-10 rounded-full object-cover border border-gold-400">
+                        <div>
+                            <h4 class="font-bold text-xs text-charcoal-900">Bramantyo R.</h4>
+                            <p class="text-[11px] text-gray-500">Verified Buyer • Semarang</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gold-200 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex text-amber-400 text-sm space-x-1">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 text-sm italic">"Velvet Rose & Oud aromanya sangat berkelas. Benar-benar mirip parfum jutaan di mall. Dapet charm leather-nya unik banget buat gantungan kunci/botol. Recommended seller!"</p>
+                    </div>
+                    <div class="flex items-center space-x-3 pt-6 border-t border-gray-100 mt-4">
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=150" alt="Reviewer" class="w-10 h-10 rounded-full object-cover border border-gold-400">
+                        <div>
+                            <h4 class="font-bold text-xs text-charcoal-900">Dina Lestari</h4>
+                            <p class="text-[11px] text-gray-500">Verified Buyer • Surabaya</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Store Info (Checklist #2, #3: Kontak Aktif) -->
+    <section id="kontak" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-charcoal-950 text-white rounded-3xl p-8 sm:p-12 border border-gold-500/30 shadow-2xl relative overflow-hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center relative z-10">
+                <div class="space-y-6">
+                    <span class="text-xs uppercase tracking-[0.3em] font-bold text-gold-400">Layanan Pelanggan</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold">Hubungi Tim Layanan Kami</h2>
+                    <p class="text-gray-300 text-sm font-light leading-relaxed">
+                        Ada pertanyaan seputar rekomendasi aroma, konfirmasi pembayaran, atau status pengiriman? Kami siap melayani Anda.
+                    </p>
+                    <div class="space-y-4 pt-2">
+                        <a href="https://wa.me/6281913367888" target="_blank" class="flex items-center space-x-4 p-3 rounded-xl bg-charcoal-900 hover:bg-charcoal-800 border border-gold-500/20 transition-all">
+                            <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                                <i class="fab fa-whatsapp text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-400">WhatsApp Customer Service</p>
+                                <p class="font-semibold text-sm text-gold-300">+62 819-1336-7888</p>
+                            </div>
+                        </a>
+                        <a href="mailto:hello@lessenceparfum.com" class="flex items-center space-x-4 p-3 rounded-xl bg-charcoal-900 hover:bg-charcoal-800 border border-gold-500/20 transition-all">
+                            <div class="w-10 h-10 rounded-full bg-gold-500/20 text-gold-400 flex items-center justify-center shrink-0">
+                                <i class="fas fa-envelope text-lg"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-400">Email Resmi</p>
+                                <p class="font-semibold text-sm text-gold-300">udinovick@gmail.com</p>
+                            </div>
+                        </a>
+                        <div class="flex items-center space-x-4 p-3 rounded-xl bg-charcoal-900 border border-gold-500/20">
+                            <div class="w-10 h-10 rounded-full bg-gold-500/20 text-gold-400 flex items-center justify-center shrink-0">
+                                <i class="fas fa-location-dot text-lg"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-400">Galeri & Workshop</p>
+                                <p class="font-semibold text-sm text-gold-300">Kota Salatiga, Jawa Tengah 50711</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fast Order CTA Card -->
+                <div class="bg-gold-100 text-charcoal-900 p-6 sm:p-8 rounded-2xl shadow-xl text-center space-y-4">
+                    <h3 class="font-serif text-2xl font-bold">Konsultasi Aroma Gratis</h3>
+                    <p class="text-xs text-gray-600">Bingung memilih parfum yang cocok dengan karakter kepribadian Anda? Chat tim pakar aroma kami sekarang.</p>
+                    <a href="https://wa.me/6281913367888?text=Halo%20L'Essence,%20bisa%20bantu%20rekomendasi%20parfum%20yang%20cocok%20untuk%20saya?" target="_blank" class="block w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-sm transition-all shadow-md">
+                        <i class="fab fa-whatsapp text-lg mr-2"></i> Chat CS via WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Checklist #3, #7, #8, #9: Kebijakan Tertulis, Legalitas, Medsos) -->
+    <footer class="bg-charcoal-950 text-gray-400 pt-16 pb-12 border-t border-gold-500/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <!-- Brand Info -->
+                <div class="space-y-4">
+                    <a href="#" class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-full border border-gold-500 flex items-center justify-center bg-charcoal-900 text-gold-400">
+                            <span class="font-serif font-bold text-base">L'E</span>
+                        </div>
+                        <span class="font-serif text-xl font-bold tracking-widest text-white">L'ESSENCE</span>
+                    </a>
+                    <p class="text-xs leading-relaxed text-gray-400">
+                        Brand parfum lokal premium dengan standar kualitas internasional. Menghadirkan keharuman eksklusif yang memikat dan tahan lama.
+                    </p>
+                    <p class="text-xs text-gold-400 font-medium">
+                        <i class="fas fa-file-signature mr-1"></i> Legalitas NIB: 1284920481029
+                    </p>
+                </div>
+
+                <!-- Navigation Links -->
+                <div>
+                    <h4 class="text-white font-semibold text-sm mb-4 tracking-wider uppercase">Menu Utama</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#beranda" class="hover:text-gold-400 transition-colors">Beranda</a></li>
+                        <li><a href="#katalog" class="hover:text-gold-400 transition-colors">Katalog Koleksi</a></li>
+                        <li><a href="#tentang-kami" class="hover:text-gold-400 transition-colors">Tentang Kami</a></li>
+                        <li><a href="#ulasan" class="hover:text-gold-400 transition-colors">Testimoni Pembeli</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal & Written Policies (Checklist #4) -->
+                <div>
+                    <h4 class="text-white font-semibold text-sm mb-4 tracking-wider uppercase">Kebijakan Toko</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><button onclick="openModal('modal-pengiriman')" class="hover:text-gold-400 text-left">Kebijakan Pengiriman</button></li>
+                        <li><button onclick="openModal('modal-retur')" class="hover:text-gold-400 text-left">Retur & Refund Garansi</button></li>
+                        <li><button onclick="openModal('modal-privasi')" class="hover:text-gold-400 text-left">Kebijakan Privasi</button></li>
+                        <li><button onclick="openModal('modal-pembayaran')" class="hover:text-gold-400 text-left">Cara & Panduan Pembayaran</button></li>
+                    </ul>
+                </div>
+
+                <!-- Social Media & Connect (Checklist #9) -->
+                <div>
+                    <h4 class="text-white font-semibold text-sm mb-4 tracking-wider uppercase">Media Sosial Kami</h4>
+                    <p class="text-xs mb-4">Ikuti akun resmi kami untuk promo terbaru & giveaway:</p>
+                    <div class="flex space-x-3">
+                        <a href="https://instagram.com" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-charcoal-900 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-charcoal-950 transition-all" aria-label="Instagram">
+                            <i class="fab fa-instagram text-lg"></i>
+                        </a>
+                        <a href="https://tiktok.com" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-charcoal-900 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-charcoal-950 transition-all" aria-label="TikTok">
+                            <i class="fab fa-tiktok text-lg"></i>
+                        </a>
+                        <a href="https://wa.me/6281913367888" target="_blank" class="w-10 h-10 rounded-full bg-charcoal-900 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-emerald-600 hover:text-white transition-all" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright Footer -->
+            <div class="border-t border-gray-800 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+                <p>&copy; 2026 L'Essence Parfum (Salatiga, Jawa Tengah). All rights reserved.</p>
+                <div class="flex items-center space-x-4">
+                    <span><i class="fas fa-lock text-emerald-400"></i> HTTPS Secure SSL</span>
+                    <span>NIB: 1284920481029</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CART SLIDE-OVER MODAL -->
+    <div id="cart-modal" class="fixed inset-0 z-50 overflow-hidden hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+        <div class="absolute inset-0 bg-charcoal-950/70 backdrop-blur-sm transition-opacity" onclick="toggleCart()"></div>
+        <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+            <div class="pointer-events-auto w-screen max-w-md bg-white shadow-2xl flex flex-col">
+                <div class="p-6 bg-charcoal-950 text-white flex justify-between items-center">
+                    <h3 class="font-serif text-lg font-bold flex items-center gap-2"><i class="fas fa-shopping-bag text-gold-400"></i> Keranjang Belanja</h3>
+                    <button onclick="toggleCart()" class="text-gray-400 hover:text-white"><i class="fas fa-times text-xl"></i></button>
+                </div>
+                <!-- Cart Items Container -->
+                <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4">
+                    <p class="text-center text-gray-400 text-sm py-12">Keranjang Anda masih kosong.</p>
+                </div>
+                <!-- Cart Footer Summary -->
+                <div class="p-6 border-t border-gray-200 bg-gold-100/50 space-y-4">
+                    <div class="flex justify-between font-bold text-lg text-charcoal-900">
+                        <span>Total:</span>
+                        <span id="cart-total">Rp 0</span>
+                    </div>
+                    <p class="text-[11px] text-gray-500"><i class="fas fa-truck text-gold-600 mr-1"></i> Bebas ongkir untuk wilayah Jawa (min. order 2 botol)</p>
+                    <button onclick="checkoutViaWA()" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-sm transition-all flex items-center justify-center gap-2 shadow">
+                        <i class="fab fa-whatsapp text-lg"></i> Checkout Via WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL POPUPS FOR WRITTEN POLICIES & PAYMENTS (Checklist #3 & #7) -->
+
+    <!-- Modal 1: Cara Pembayaran & QRIS (Checklist #7) -->
+    <div id="modal-pembayaran" class="fixed inset-0 z-50 bg-charcoal-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative border border-gold-300 max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('modal-pembayaran')" class="absolute top-4 right-4 text-gray-400 hover:text-charcoal-900"><i class="fas fa-times text-xl"></i></button>
+            <h3 class="font-serif text-xl font-bold text-charcoal-900 mb-2 flex items-center gap-2">
+                <i class="fas fa-qrcode text-gold-600"></i> Panduan & Rekening Pembayaran
+            </h3>
+            <p class="text-xs text-gray-600 mb-4">Pembayaran resmi hanya ditujukan ke rekening atas nama usaha resmi kami.</p>
+
+            <div class="bg-gold-50 p-4 rounded-xl border border-gold-200 text-center space-y-3 mb-4">
+                <span class="text-xs font-bold text-gold-700 uppercase tracking-wider">Scan QRIS Resmi Toko</span>
+                <div class="bg-white p-3 rounded-lg w-48 h-48 mx-auto flex items-center justify-center border border-gray-300">
+                    <!-- SVG QRIS Dummy Representation -->
+                    <div class="text-center">
+                        <i class="fas fa-qrcode text-8xl text-charcoal-900"></i>
+                        <p class="text-[10px] font-mono font-bold text-gray-700 mt-1">NMID: ID10293847561</p>
+                    </div>
+                </div>
+                <p class="text-[11px] text-gray-500">Mendukung GoPay, OVO, ShopeePay, DANA, LinkAja & Mobile Banking</p>
+            </div>
+
+            <div class="space-y-3 text-xs">
+                <h4 class="font-bold text-charcoal-900 border-b pb-1">Transfer Bank Resmi Usaha:</h4>
+                <div class="flex justify-between items-center bg-gray-50 p-2.5 rounded-lg border border-gray-200">
+                    <div>
+                        <p class="font-bold text-gray-800">Bank BCA</p>
+                        <p class="font-mono text-sm text-gold-700">8920-1234-5678</p>
+                        <p class="text-[10px] text-gray-500">a.n L ESSENCE PARFUM INDONESIA</p>
+                    </div>
+                    <button onclick="copyText('892012345678')" class="text-xs bg-gold-500 text-white px-2.5 py-1 rounded hover:bg-gold-600">Salin</button>
+                </div>
+                <div class="flex justify-between items-center bg-gray-50 p-2.5 rounded-lg border border-gray-200">
+                    <div>
+                        <p class="font-bold text-gray-800">Bank Mandiri</p>
+                        <p class="font-mono text-sm text-gold-700">137-00-1234567-8</p>
+                        <p class="text-[10px] text-gray-500">a.n L ESSENCE PARFUM INDONESIA</p>
+                    </div>
+                    <button onclick="copyText('1370012345678')" class="text-xs bg-gold-500 text-white px-2.5 py-1 rounded hover:bg-gold-600">Salin</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Pengiriman (Checklist #4) -->
+    <div id="modal-pengiriman" class="fixed inset-0 z-50 bg-charcoal-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative border border-gold-300">
+            <button onclick="closeModal('modal-pengiriman')" class="absolute top-4 right-4 text-gray-400 hover:text-charcoal-900"><i class="fas fa-times text-xl"></i></button>
+            <h3 class="font-serif text-xl font-bold text-charcoal-900 mb-4 flex items-center gap-2">
+                <i class="fas fa-truck text-gold-600"></i> Kebijakan Pengiriman
+            </h3>
+            <div class="space-y-3 text-xs text-gray-600 leading-relaxed">
+                <p>1. <strong>Lokasi Pengiriman:</strong> Semua pesanan dikirim dari Kota Salatiga, Jawa Tengah.</p>
+                <p>2. <strong>Waktu Memproses:</strong> Pesanan yang dikonfirmasi sebelum pukul 15.00 WIB akan dikirim pada hari yang sama.</p>
+                <p>3. <strong>Keamanan Kemasan:</strong> Setiap botol dibungkus menggunakan ekstra *Bubble Wrap* tebal dan dus khusus tanpa biaya tambahan.</p>
+                <p>4. <strong>Mitra Ekspedisi:</strong> JNE, J&T Express, dan SiCepat dengan nomor resi dikirim via WhatsApp H+1.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3: Retur & Refund (Checklist #4) -->
+    <div id="modal-retur" class="fixed inset-0 z-50 bg-charcoal-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative border border-gold-300">
+            <button onclick="closeModal('modal-retur')" class="absolute top-4 right-4 text-gray-400 hover:text-charcoal-900"><i class="fas fa-times text-xl"></i></button>
+            <h3 class="font-serif text-xl font-bold text-charcoal-900 mb-4 flex items-center gap-2">
+                <i class="fas fa-undo text-gold-600"></i> Garansi Retur & Refund
+            </h3>
+            <div class="space-y-3 text-xs text-gray-600 leading-relaxed">
+                <p>1. <strong>Garansi Pecah/Rusak:</strong> Kami mengganti 100% produk baru jika terjadi kerusakan saat pengiriman.</p>
+                <p>2. <strong>Syarat Klaim:</strong> Wajib menyertakan foto & video unboxing tanpa terputus maksimal 2x24 jam setelah barang diterima.</p>
+                <p>3. <strong>Proses Refund:</strong> Pengembalian dana ditransfer langsung ke rekening pembeli dalam waktu 1x24 jam setelah klaim disetujui.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 4: Kebijakan Privasi (Checklist #4) -->
+    <div id="modal-privasi" class="fixed inset-0 z-50 bg-charcoal-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative border border-gold-300">
+            <button onclick="closeModal('modal-privasi')" class="absolute top-4 right-4 text-gray-400 hover:text-charcoal-900"><i class="fas fa-times text-xl"></i></button>
+            <h3 class="font-serif text-xl font-bold text-charcoal-900 mb-4 flex items-center gap-2">
+                <i class="fas fa-user-shield text-gold-600"></i> Kebijakan Privasi
+            </h3>
+            <div class="space-y-3 text-xs text-gray-600 leading-relaxed">
+                <p>1. Data pribadi Anda (Nama, Alamat, No. HP) hanya digunakan untuk keperluan pengiriman dan konfirmasi pesanan L'Essence Parfum.</p>
+                <p>2. Kami menjamin tidak akan pernah menjual atau membagikan data Anda kepada pihak ketiga manapun.</p>
+                <p>3. Seluruh transaksi dan pengiriman data dilindungi dengan enkripsi keamanan HTTPS SSL.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-charcoal-950 text-gold-300 px-4 py-3 rounded-xl shadow-2xl border border-gold-500/40 hidden z-50 flex items-center gap-3 text-xs">
+        <i class="fas fa-check-circle text-emerald-400 text-lg"></i>
+        <span id="toast-msg">Item berhasil ditambahkan</span>
+    </div>
+
+    <!-- JavaScript Interactivity -->
+    <script>
+        // Shopping Cart State Management
+        let cart = [];
+
+        function addToCart(title, price, image) {
+            const existing = cart.find(item => item.title === title);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({ title, price, image, qty: 1 });
+            }
+            updateCartUI();
+            showToast(`"${title}" masuk ke keranjang`);
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartCountEl = document.getElementById('cart-count');
+            const cartItemsEl = document.getElementById('cart-items');
+            const cartTotalEl = document.getElementById('cart-total');
+
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+            cartCountEl.textContent = totalQty;
+            cartTotalEl.textContent = 'Rp ' + totalPrice.toLocaleString('id-ID');
+
+            if (cart.length === 0) {
+                cartItemsEl.innerHTML = '<p class="text-center text-gray-400 text-sm py-12">Keranjang Anda masih kosong.</p>';
+            } else {
+                cartItemsEl.innerHTML = cart.map((item, index) => `
+                    <div class="flex items-center space-x-3 bg-gray-50 p-3 rounded-xl border border-gray-200">
+                        <img src="${item.image}" class="w-14 h-14 object-cover rounded-lg">
+                        <div class="flex-1">
+                            <h4 class="font-bold text-xs text-charcoal-900">${item.title}</h4>
+                            <p class="text-xs text-gold-700 font-semibold">Rp ${item.price.toLocaleString('id-ID')} x ${item.qty}</p>
+                        </div>
+                        <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700 text-sm p-1"><i class="fas fa-trash"></i></button>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cart-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        function checkoutViaWA() {
+            if (cart.length === 0) {
+                alert('Keranjang belanja Anda masih kosong.');
+                return;
+            }
+            let message = "Halo L'Essence Parfum, saya ingin memesan produk berikut:\n\n";
+            cart.forEach((item, i) => {
+                message += `${i + 1}. ${item.title} x${item.qty} = Rp ${(item.price * item.qty).toLocaleString('id-ID')}\n`;
+            });
+            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            message += `\n*Total Pesanan:* Rp ${total.toLocaleString('id-ID')}\n`;
+            message += `\nMohon info format Alamat Pengiriman & Rekening Pembayaran. Terima kasih!`;
+
+            const encoded = encodeURIComponent(message);
+            window.open(`https://wa.me/6281913367888?text=${encoded}`, '_blank');
+        }
+
+        // Modal Helpers
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        // Copy Text Helper
+        function copyText(text) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast('Nomor rekening berhasil disalin!');
+        }
+
+        // Toast Notification Helper
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').textContent = msg;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
